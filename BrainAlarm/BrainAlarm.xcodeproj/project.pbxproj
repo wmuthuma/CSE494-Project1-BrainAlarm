@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
 		8CFF581219F846450087EA6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581119F846450087EA6F /* Foundation.framework */; };
 		8CFF581419F846450087EA6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581319F846450087EA6F /* CoreGraphics.framework */; };
 		8CFF581619F846450087EA6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581519F846450087EA6F /* UIKit.framework */; };
@@ -14,13 +15,15 @@
 		8CFF581E19F846450087EA6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF581D19F846450087EA6F /* main.m */; };
 		8CFF582219F846450087EA6F /* BAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF582119F846450087EA6F /* BAAppDelegate.m */; };
 		8CFF582519F846450087EA6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CFF582319F846450087EA6F /* Main.storyboard */; };
-		8CFF582819F846450087EA6F /* BAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF582719F846450087EA6F /* BAViewController.m */; };
 		8CFF582A19F846450087EA6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CFF582919F846450087EA6F /* Images.xcassets */; };
 		8CFF583119F846450087EA6F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF583019F846450087EA6F /* XCTest.framework */; };
 		8CFF583219F846450087EA6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581119F846450087EA6F /* Foundation.framework */; };
 		8CFF583319F846450087EA6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581519F846450087EA6F /* UIKit.framework */; };
 		8CFF583B19F846450087EA6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CFF583919F846450087EA6F /* InfoPlist.strings */; };
 		8CFF583D19F846450087EA6F /* BrainAlarmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF583C19F846450087EA6F /* BrainAlarmTests.m */; };
+		8CFF584819F8484F0087EA6F /* BATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF584719F8484F0087EA6F /* BATableViewController.m */; };
+		8CFF584E19F849980087EA6F /* BAAddAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF584D19F849980087EA6F /* BAAddAlarmViewController.m */; };
+		8CFF585119F84AC60087EA6F /* BACompleteTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFF585019F84AC60087EA6F /* BACompleteTaskViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
+		8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAViewAlarmViewController.m; sourceTree = "<group>"; };
 		8CFF580E19F846450087EA6F /* BrainAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFF581119F846450087EA6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8CFF581319F846450087EA6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -45,14 +50,18 @@
 		8CFF582019F846450087EA6F /* BAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAAppDelegate.h; sourceTree = "<group>"; };
 		8CFF582119F846450087EA6F /* BAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BAAppDelegate.m; sourceTree = "<group>"; };
 		8CFF582419F846450087EA6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8CFF582619F846450087EA6F /* BAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAViewController.h; sourceTree = "<group>"; };
-		8CFF582719F846450087EA6F /* BAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BAViewController.m; sourceTree = "<group>"; };
 		8CFF582919F846450087EA6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8CFF582F19F846450087EA6F /* BrainAlarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrainAlarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFF583019F846450087EA6F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		8CFF583819F846450087EA6F /* BrainAlarmTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BrainAlarmTests-Info.plist"; sourceTree = "<group>"; };
 		8CFF583A19F846450087EA6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8CFF583C19F846450087EA6F /* BrainAlarmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrainAlarmTests.m; sourceTree = "<group>"; };
+		8CFF584619F8484F0087EA6F /* BATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BATableViewController.h; sourceTree = "<group>"; };
+		8CFF584719F8484F0087EA6F /* BATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BATableViewController.m; sourceTree = "<group>"; };
+		8CFF584C19F849980087EA6F /* BAAddAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAddAlarmViewController.h; sourceTree = "<group>"; };
+		8CFF584D19F849980087EA6F /* BAAddAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAddAlarmViewController.m; sourceTree = "<group>"; };
+		8CFF584F19F84AC60087EA6F /* BACompleteTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BACompleteTaskViewController.h; sourceTree = "<group>"; };
+		8CFF585019F84AC60087EA6F /* BACompleteTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BACompleteTaskViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +122,17 @@
 			isa = PBXGroup;
 			children = (
 				8CFF582019F846450087EA6F /* BAAppDelegate.h */,
+				8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */,
+				8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */,
 				8CFF582119F846450087EA6F /* BAAppDelegate.m */,
 				8CFF582319F846450087EA6F /* Main.storyboard */,
-				8CFF582619F846450087EA6F /* BAViewController.h */,
-				8CFF582719F846450087EA6F /* BAViewController.m */,
+				8CFF584F19F84AC60087EA6F /* BACompleteTaskViewController.h */,
+				8CFF585019F84AC60087EA6F /* BACompleteTaskViewController.m */,
+				8CFF584C19F849980087EA6F /* BAAddAlarmViewController.h */,
+				8CFF584D19F849980087EA6F /* BAAddAlarmViewController.m */,
 				8CFF582919F846450087EA6F /* Images.xcassets */,
+				8CFF584619F8484F0087EA6F /* BATableViewController.h */,
+				8CFF584719F8484F0087EA6F /* BATableViewController.m */,
 				8CFF581819F846450087EA6F /* Supporting Files */,
 			);
 			path = BrainAlarm;
@@ -250,7 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CFF582819F846450087EA6F /* BAViewController.m in Sources */,
+				8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */,
+				8CFF584819F8484F0087EA6F /* BATableViewController.m in Sources */,
+				8CFF584E19F849980087EA6F /* BAAddAlarmViewController.m in Sources */,
+				8CFF585119F84AC60087EA6F /* BACompleteTaskViewController.m in Sources */,
 				8CFF581E19F846450087EA6F /* main.m in Sources */,
 				8CFF582219F846450087EA6F /* BAAppDelegate.m in Sources */,
 			);
@@ -457,6 +475,7 @@
 				8CFF584219F846450087EA6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8CFF584319F846450087EA6F /* Build configuration list for PBXNativeTarget "BrainAlarmTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +484,7 @@
 				8CFF584519F846450087EA6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

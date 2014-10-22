@@ -1,5 +1,5 @@
 //
-//  BAViewController.h
+//  BACompleteTaskViewController.h
 //  BrainAlarm
 //
 //  Created by Nathaniel Mendoza on 10/22/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BAViewController : UIViewController
+@interface BACompleteTaskViewController : UIViewController
 
 @end
