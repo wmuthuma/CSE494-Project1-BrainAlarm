@@ -62,13 +62,13 @@
     
     
     // first we create a button and set it's properties
-    UIBarButtonItem *myButton = [[UIBarButtonItem alloc]init];
-    myButton.action = @selector(doTheThing);
-    myButton.title = @"+";
-    myButton.target = self;
+    //UIBarButtonItem *myButton = [[UIBarButtonItem alloc]init];
+    //myButton.action = @selector(doTheThing);
+    //myButton.title = @"+";
+    //myButton.target = self;
     
     // then we add the button to the navigation bar
-    self.navigationItem.rightBarButtonItem = myButton;
+    //self.navigationItem.rightBarButtonItem = myButton;
 }
 
 - (void) doTheThing {

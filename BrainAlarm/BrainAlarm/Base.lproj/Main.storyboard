@@ -30,7 +30,13 @@
                             <outlet property="delegate" destination="Huc-Dm-XJO" id="W3w-00-u96"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="HPp-et-ioE"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="HPp-et-ioE">
+                        <barButtonItem key="rightBarButtonItem" title="+" id="huf-Ru-vNH">
+                            <connections>
+                                <segue destination="gsU-eS-WY8" kind="push" id="0Ed-fD-duQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Af6-nk-oxY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Alarm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJ1-Pt-Vkj">
-                                <rect key="frame" x="120" y="46" width="81" height="21"/>
+                                <rect key="frame" x="120" y="108" width="81" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -57,6 +63,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="n2w-72-pkp"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61x-Fx-eyG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
