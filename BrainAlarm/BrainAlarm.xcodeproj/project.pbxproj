@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */; };
 		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
 		8CFF581219F846450087EA6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581119F846450087EA6F /* Foundation.framework */; };
 		8CFF581419F846450087EA6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581319F846450087EA6F /* CoreGraphics.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlarmModel.h; sourceTree = "<group>"; };
+		8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAlarmModel.m; sourceTree = "<group>"; };
 		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
 		8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAViewAlarmViewController.m; sourceTree = "<group>"; };
 		8CFF580E19F846450087EA6F /* BrainAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +148,8 @@
 				8CFF581A19F846450087EA6F /* InfoPlist.strings */,
 				8CFF581D19F846450087EA6F /* main.m */,
 				8CFF581F19F846450087EA6F /* BrainAlarm-Prefix.pch */,
+				8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */,
+				8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */,
 				8CFF584819F8484F0087EA6F /* BATableViewController.m in Sources */,
 				8CFF584E19F849980087EA6F /* BAAddAlarmViewController.m in Sources */,
+				8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */,
 				8CFF585119F84AC60087EA6F /* BACompleteTaskViewController.m in Sources */,
 				8CFF581E19F846450087EA6F /* main.m in Sources */,
 				8CFF582219F846450087EA6F /* BAAppDelegate.m in Sources */,
