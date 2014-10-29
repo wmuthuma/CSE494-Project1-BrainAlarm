@@ -29,6 +29,9 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)addAlarmAction:(id)sender {
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
