@@ -67,6 +67,7 @@
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
     notification.fireDate = newAlarm.alarmTime;
+    notification.repeatInterval = NSCalendarUnitMinute;
     NSString *alarmString;
     
     switch(newAlarm.type)
