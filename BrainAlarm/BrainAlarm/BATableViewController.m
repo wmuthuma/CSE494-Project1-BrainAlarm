@@ -7,13 +7,24 @@
 //
 
 #import "BATableViewController.h"
+#import "BAViewAlarmViewController.h"
+#import "BAAlarmModel.h"
 
 @interface BATableViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation BATableViewController
 
+static NSMutableArray *alarmList;
++ (NSMutableArray *)alarms
+{
+    if (!alarmList)
+        alarmList = [[NSMutableArray alloc] init];
+    
+    return alarmList;
+}
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -22,37 +33,16 @@
     }
     return self;
 }
-
-/*
- 
- - (void) viewDidLoad
- {
- [super viewDidLoad];
- 
- // first we create a button and set it's properties
- UIBarButtonItem *myButton = [[UIBarButtonItem alloc]init];
- myButton.action = @selector(doTheThing);
- myButton.title = @"Hello";
- myButton.target = self;
- 
- // then we add the button to the navigation bar
- self.navigationItem.rightBarButtonItem = myButton;
- 
- 
- }
- 
- 
- // method called via selector
- - (void) doTheThing {
- 
- NSLog(@"Doing the thing");
- 
- }
- */
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
+    NSLog(@"Reload");
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -69,6 +59,7 @@
     
     // then we add the button to the navigation bar
     //self.navigationItem.rightBarButtonItem = myButton;
+    
 }
 
 - (void) doTheThing {
@@ -93,20 +84,49 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    NSLog(@"Yo%d", alarmList.count);
+    return alarmList.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AlarmCell" forIndexPath:indexPath];
     
     // Configure the cell...
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+
+    formatter.dateFormat = @"hh:mm a EEE, MMM dd";
+    
+   
+    
+    NSString *formattedDate = [formatter stringFromDate:[alarmList[indexPath.row] alarmTime]
+];
+    
+    
+    cell.textLabel.text = formattedDate;
+    
+    
     return cell;
 }
-*/
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"tableViewSegue"]) {
+        UITableViewCell *cell = sender;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        BAViewAlarmViewController *dest = [segue destinationViewController];
+        
+        dest.alarmIndex = indexPath.row;
+        
+        NSLog(@"Segue TableView: %d", dest.alarmIndex);
+        
+    }
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

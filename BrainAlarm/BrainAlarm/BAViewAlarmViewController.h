@@ -10,4 +10,7 @@
 
 @interface BAViewAlarmViewController : UIViewController
 
+@property int alarmIndex;
+
+
 @end

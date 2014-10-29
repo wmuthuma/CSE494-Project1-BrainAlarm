@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BATableViewController : UITableViewController
+@interface BATableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property NSMutableArray *alarms;
++(NSMutableArray *)alarms;
 
 @end
+

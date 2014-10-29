@@ -12,8 +12,8 @@
 
 typedef enum
 {
-    Math,
-    JJ
+    JJ,
+    Math
 } TaskType;
 
 typedef enum
@@ -30,7 +30,7 @@ typedef enum
 
 @property NSDate *alarmTime;
 @property TaskType type;
-@property NSArray *daysActive;
+//@property NSArray *daysActive;
 
 
 

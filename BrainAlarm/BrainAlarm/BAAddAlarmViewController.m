@@ -7,12 +7,34 @@
 //
 
 #import "BAAddAlarmViewController.h"
+#import "BAAlarmModel.h"
+#import "BATableViewController.h"
 
 @interface BAAddAlarmViewController ()
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+
+@property NSArray *taskChoices;
 
 @end
 
 @implementation BAAddAlarmViewController
+
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.taskChoices.count;
+}
+
+-(NSString* )pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return self.taskChoices[row];
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,9 +49,41 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.taskChoices = [[NSArray alloc] initWithObjects:@"JJ", @"Math", nil];
 }
 
-- (IBAction)addAlarmAction:(id)sender {
+- (IBAction)addAlarmAction:(id)sender
+{
+    BAAlarmModel *newAlarm = [[BAAlarmModel alloc]init];
+    
+    newAlarm.alarmTime = self.datePicker.date;
+    
+    newAlarm.type = [self.pickerView selectedRowInComponent:0];
+    NSLog(@"%d", newAlarm.type);
+    
+    [[BATableViewController alarms] addObject: newAlarm];
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    notification.fireDate = newAlarm.alarmTime;
+    NSString *alarmString;
+    
+    switch(newAlarm.type)
+    {
+        case Math:
+            alarmString = @"Math task to be done!";
+        case JJ:
+            alarmString = @"Jumping Jacks to be done!";
+        default: ;
+    }
+    
+    notification.alertBody = alarmString;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification: notification];
+    
+    //[notification release];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -7,15 +7,42 @@
 //
 
 #import "BAAppDelegate.h"
+#import "BACompleteTaskViewController.h"
 
 @implementation BAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    /*
+     // Handle launching from a notification
+     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+     if (locationNotification) {
+     // Set icon badge number to zero
+     application.applicationIconBadgeNumber = 0;
+     // redirect to UIViewController
+     UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
+     UIViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"IdentifierOfViewController"];
+     self.window.rootViewController = notificationViewController; // set the new UIViewController
+     }     */
+    
+    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (locationNotification) {
+        UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
+        [self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
+    }
+    
     return YES;
 }
-							
+
+-(void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
+    [self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
