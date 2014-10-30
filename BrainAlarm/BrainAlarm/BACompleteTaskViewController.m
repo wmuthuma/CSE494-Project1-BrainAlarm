@@ -9,6 +9,7 @@
 #import "BACompleteTaskViewController.h"
 
 @interface BACompleteTaskViewController ()
+- (IBAction)backToAlarmsButton:(id)sender;
 
 @end
 
@@ -46,4 +47,13 @@
 }
 */
 
+//Do later!!
+- (IBAction)backToAlarmsButton:(id)sender
+{
+    //change the next line later!
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];    
+    
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

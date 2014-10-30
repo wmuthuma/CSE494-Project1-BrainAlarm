@@ -50,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.taskChoices = [[NSArray alloc] initWithObjects:@"JJ", @"Math", nil];
+    self.taskChoices = [[NSArray alloc] initWithObjects:@"Jumping Jacks", @"Math", nil];
 }
 
 - (IBAction)addAlarmAction:(id)sender
