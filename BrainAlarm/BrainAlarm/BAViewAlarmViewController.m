@@ -12,6 +12,7 @@
 
 @interface BAViewAlarmViewController ()
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (weak, nonatomic) IBOutlet UILabel *taskLabel;
 
 @end
 
@@ -30,8 +31,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    BAAlarmModel *alarm = [BATableViewController alarms][self.alarmIndex];
+    self.datePicker.date = [alarm alarmTime];
     
-    self.datePicker.date = [[BATableViewController alarms][self.alarmIndex] alarmTime];
+    switch([alarm type])
+    {
+        case JJ:
+            self.taskLabel.text = @"Jumping Jacks";
+        case Math:
+            self.taskLabel.text = @"Math";
+    }
 }
 
 - (void)didReceiveMemoryWarning

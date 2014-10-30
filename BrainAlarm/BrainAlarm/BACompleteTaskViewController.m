@@ -50,8 +50,8 @@
 //Do later!!
 - (IBAction)backToAlarmsButton:(id)sender
 {
-    //change the next line later!
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];    
+    //change the next line later! cancels all notifications!
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     
     [self dismissViewControllerAnimated:YES completion:nil];
