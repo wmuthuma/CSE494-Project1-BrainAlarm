@@ -10,4 +10,20 @@
 
 @implementation BAAlarmModel
 
+//encoder methods for NSCoding
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.alarmTime forKey:@"alarmTime"];
+    [aCoder encodeInt:self.type forKey:@"type"];
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    
+    self.alarmTime = [aDecoder decodeObjectForKey:@"alarmTime"];
+    self.type = [aDecoder decodeIntForKey:@"type"];
+    
+    return self;
+}
 @end
