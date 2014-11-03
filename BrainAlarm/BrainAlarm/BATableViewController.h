@@ -12,5 +12,8 @@
 
 +(NSMutableArray *)alarms;
 
++(void)LoadAlarmList;
++(void)SaveAlarmList;
+
 @end
 

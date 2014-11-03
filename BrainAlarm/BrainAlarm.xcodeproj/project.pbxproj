@@ -129,13 +129,13 @@
 				8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */,
 				8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */,
 				8CFF582319F846450087EA6F /* Main.storyboard */,
-				8CFF584F19F84AC60087EA6F /* BACompleteTaskViewController.h */,
 				8CFF585019F84AC60087EA6F /* BACompleteTaskViewController.m */,
+				8CFF584F19F84AC60087EA6F /* BACompleteTaskViewController.h */,
 				8CFF584C19F849980087EA6F /* BAAddAlarmViewController.h */,
 				8CFF584D19F849980087EA6F /* BAAddAlarmViewController.m */,
-				8CFF582919F846450087EA6F /* Images.xcassets */,
 				8CFF584619F8484F0087EA6F /* BATableViewController.h */,
 				8CFF584719F8484F0087EA6F /* BATableViewController.m */,
+				8CFF582919F846450087EA6F /* Images.xcassets */,
 				8CFF581819F846450087EA6F /* Supporting Files */,
 			);
 			path = BrainAlarm;

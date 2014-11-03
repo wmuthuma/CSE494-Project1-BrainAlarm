@@ -10,4 +10,9 @@
 
 @interface BACompleteTaskViewController : UIViewController
 
+@property int taskType;
+@property NSDate *date;
+
+@property UILocalNotification *notification;
+
 @end

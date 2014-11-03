@@ -60,7 +60,7 @@
     newAlarm.alarmTime = self.datePicker.date;
     
     newAlarm.type = [self.pickerView selectedRowInComponent:0];
-    NSLog(@"%d", newAlarm.type);
+    NSLog(@"Add New: %d", newAlarm.type);
     
     [[BATableViewController alarms] addObject: newAlarm];
     
@@ -74,16 +74,21 @@
     {
         case Math:
             alarmString = @"Math task to be done!";
+            break;
         case JJ:
             alarmString = @"Jumping Jacks to be done!";
+            break;
         default: ;
     }
     
     notification.alertBody = alarmString;
     
+    
     [[UIApplication sharedApplication] scheduleLocalNotification: notification];
     
     //[notification release];
+    
+    [BATableViewController SaveAlarmList];
     
 }
 

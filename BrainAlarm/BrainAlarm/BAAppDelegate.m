@@ -8,6 +8,7 @@
 
 #import "BAAppDelegate.h"
 #import "BACompleteTaskViewController.h"
+#import "BATableViewController.h"
 
 @implementation BAAppDelegate
 
@@ -26,12 +27,16 @@
      self.window.rootViewController = notificationViewController; // set the new UIViewController
      }     */
     
-    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+   UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
+        notificationViewController.notification = locationNotification;
+        [BATableViewController LoadAlarmList];
         [self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
     }
+    
+    
     
     return YES;
 }
@@ -40,7 +45,21 @@
 {
     UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
-    [self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
+    
+   notificationViewController.notification = [notification copy];
+    //notificationViewController.notification.fireDate = notification.fireDate;
+    notificationViewController.date = [notification.fireDate copy];
+
+    
+   // NSLog(@"Alert Body: %@", notificationViewController.notification.alertBody);
+    
+    [BATableViewController LoadAlarmList];
+    //[self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
+
+    [self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
+    
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

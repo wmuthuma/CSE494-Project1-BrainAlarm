@@ -13,6 +13,9 @@
 @interface BAViewAlarmViewController ()
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *taskLabel;
+- (IBAction)deleteAlarmButton:(id)sender;
+
+@property BAAlarmModel *alarm;
 
 @end
 
@@ -31,15 +34,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    BAAlarmModel *alarm = [BATableViewController alarms][self.alarmIndex];
-    self.datePicker.date = [alarm alarmTime];
+    self.alarm = [BATableViewController alarms][self.alarmIndex];
+    self.datePicker.date = [self.alarm alarmTime];
     
-    switch([alarm type])
+    NSLog(@"AlarmType: %d", [self.alarm type]);
+    
+    switch([self.alarm type])
     {
         case JJ:
             self.taskLabel.text = @"Jumping Jacks";
+            break;
         case Math:
             self.taskLabel.text = @"Math";
+            break;
     }
 }
 
@@ -52,4 +59,31 @@
 
 
 
+- (IBAction)deleteAlarmButton:(id)sender
+{
+    for(BAAlarmModel *a in [BATableViewController alarms])
+    {
+        if([self.alarm isEqual:a])
+        {
+            [[BATableViewController alarms] removeObject:a];
+            break;
+        }
+    }
+    
+    [BATableViewController SaveAlarmList];
+    
+    //should work test later
+    NSArray *notificationList = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for(UILocalNotification *not in notificationList)
+    {
+        if([self.alarm.alarmTime isEqual:not.fireDate])
+        {
+            [[UIApplication sharedApplication] cancelLocalNotification:not];
+        }
+    }
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
 @end

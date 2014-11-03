@@ -17,7 +17,11 @@
 
 @implementation BATableViewController
 
+
+
 static NSMutableArray *alarmList;
+
+
 + (NSMutableArray *)alarms
 {
     if (!alarmList)
@@ -25,6 +29,7 @@ static NSMutableArray *alarmList;
     
     return alarmList;
 }
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -33,6 +38,7 @@ static NSMutableArray *alarmList;
     }
     return self;
 }
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.tableView reloadData];
@@ -43,30 +49,12 @@ static NSMutableArray *alarmList;
 {
     [super viewDidLoad];
     
+    [BATableViewController LoadAlarmList];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    
-    // first we create a button and set it's properties
-    //UIBarButtonItem *myButton = [[UIBarButtonItem alloc]init];
-    //myButton.action = @selector(doTheThing);
-    //myButton.title = @"+";
-    //myButton.target = self;
-    
-    // then we add the button to the navigation bar
-    //self.navigationItem.rightBarButtonItem = myButton;
-    
+    [self.tableView reloadData];
 }
 
-- (void) doTheThing {
-    
-    
-    
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -127,6 +115,57 @@ static NSMutableArray *alarmList;
         
     }
 }
+
+
+#pragma mark - persistence functions
++ (NSString *)documentsDirectory
+{
+    // for those of you familiar with command prompt this will make sense
+    // for those of you not familiar a tilde usually refers to your "home"
+    // so we ask for a path to <our applications home>/Documents
+    return [@"~/Documents" stringByExpandingTildeInPath];
+}
++(NSString *)dataFilePath
+{
+    // this will return <our applications home>/Documents/Checklist.plist
+    // if we write here the system will generate a new file in the Documents folder
+    // if we wanted to save many files we could just append different files to the path
+    NSLog(@"%@",[self documentsDirectory]);
+    return [[self documentsDirectory] stringByAppendingPathComponent:@"TestFile.plist"];
+    
+}
+
++(void)LoadAlarmList
+{
+    NSString *path = [self dataFilePath];
+    
+    //do we have anything in our documents directory?  If we have anything then load it up
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        alarmList = [unarchiver decodeObjectForKey:@"AlarmList"];
+        [unarchiver finishDecoding];
+    }
+    else
+    {
+        alarmList = [[NSMutableArray alloc]init];
+    }
+}
+
++(void)SaveAlarmList
+{
+    // create a generic data storage object
+    NSMutableData *data = [[NSMutableData alloc] init];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    
+    [archiver encodeObject: alarmList forKey:@"AlarmList"];
+    
+    [archiver finishEncoding];
+    [data writeToFile:[self dataFilePath] atomically:YES];
+}
+
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

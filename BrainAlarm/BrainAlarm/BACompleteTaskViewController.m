@@ -7,13 +7,16 @@
 //
 
 #import "BACompleteTaskViewController.h"
+#import "BATableViewController.h"
+#import "BAAlarmModel.h"
 
 @interface BACompleteTaskViewController ()
 - (IBAction)backToAlarmsButton:(id)sender;
-
+@property bool taskIsDone;
 @end
 
 @implementation BACompleteTaskViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +31,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.taskIsDone = true;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,10 +55,31 @@
 //Do later!!
 - (IBAction)backToAlarmsButton:(id)sender
 {
-    //change the next line later! cancels all notifications!
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if(self.taskIsDone)
+    {
+        NSLog(@"Before deleting from list");
+        NSLog(@"FireDate: %@", self.date);
+        //NSLog(@"Alert Body: %@", self.notification.alertBody);
+        for(BAAlarmModel *a in [BATableViewController alarms])
+        {
+            if([a.alarmTime isEqual:self.date])
+            {
+                [[BATableViewController alarms] removeObject:a];
+                NSLog(@"Found object");
+                break;
+            }
+            NSLog(@"Time: %@", [a alarmTime]);
+        }
+        
+        NSLog(@"Unsubscribe");
+        [[UIApplication sharedApplication] cancelLocalNotification:self.notification];
+        
+        NSLog(@"Save NSCoding");
+        
+        [BATableViewController SaveAlarmList];
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+   
 }
 @end
