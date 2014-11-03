@@ -68,6 +68,10 @@
     
     notification.fireDate = newAlarm.alarmTime;
     notification.repeatInterval = NSCalendarUnitMinute;
+    //Need to test
+    notification.soundName = @"Alarm.mp3";
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@", newAlarm.alarmTime] forKey:@"Name"];
+    notification.userInfo = infoDict;
     NSString *alarmString;
     
     switch(newAlarm.type)

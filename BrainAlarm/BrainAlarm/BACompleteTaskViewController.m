@@ -62,7 +62,7 @@
         //NSLog(@"Alert Body: %@", self.notification.alertBody);
         for(BAAlarmModel *a in [BATableViewController alarms])
         {
-            if([a.alarmTime isEqual:self.date])
+            if([a.alarmTime isEqual:self.notification.userInfo[@"Name"]])
             {
                 [[BATableViewController alarms] removeObject:a];
                 NSLog(@"Found object");
@@ -71,8 +71,20 @@
             NSLog(@"Time: %@", [a alarmTime]);
         }
         
-        NSLog(@"Unsubscribe");
+        //Should work need to test
+        NSLog(@"Unsubscribe local notification for this alarm");
+        
         [[UIApplication sharedApplication] cancelLocalNotification:self.notification];
+        
+        NSArray *notificationList = [[UIApplication sharedApplication] scheduledLocalNotifications];
+        
+        for(UILocalNotification *not in notificationList)
+        {
+            if([self.notification.userInfo[@"Name"] isEqual:not.fireDate])
+            {
+                [[UIApplication sharedApplication] cancelLocalNotification:not];
+            }
+        }
         
         NSLog(@"Save NSCoding");
         

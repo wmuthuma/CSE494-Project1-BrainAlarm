@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		399050FC1A07FEEA0022415C /* Alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 399050FB1A07FEEA0022415C /* Alarm.mp3 */; };
 		8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */; };
 		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
 		8CFF581219F846450087EA6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581119F846450087EA6F /* Foundation.framework */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		399050FB1A07FEEA0022415C /* Alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Alarm.mp3; sourceTree = "<group>"; };
 		8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlarmModel.h; sourceTree = "<group>"; };
 		8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAlarmModel.m; sourceTree = "<group>"; };
 		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				8CFF581919F846450087EA6F /* BrainAlarm-Info.plist */,
+				399050FB1A07FEEA0022415C /* Alarm.mp3 */,
 				8CFF581A19F846450087EA6F /* InfoPlist.strings */,
 				8CFF581D19F846450087EA6F /* main.m */,
 				8CFF581F19F846450087EA6F /* BrainAlarm-Prefix.pch */,
@@ -249,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				399050FC1A07FEEA0022415C /* Alarm.mp3 in Resources */,
 				8CFF582A19F846450087EA6F /* Images.xcassets in Resources */,
 				8CFF581C19F846450087EA6F /* InfoPlist.strings in Resources */,
 				8CFF582519F846450087EA6F /* Main.storyboard in Resources */,
