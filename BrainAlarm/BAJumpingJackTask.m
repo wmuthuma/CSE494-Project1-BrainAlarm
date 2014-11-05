@@ -16,13 +16,18 @@
 
 // This will allow us to read our accelerometer values
 @property (nonatomic,strong) CMMotionManager *motionManager;
+
+//JJs done by the user
 @property NSInteger numberOfJacks;
+
+//Number of JJs user needs to do
 @property NSInteger jacksToComplete;
 
 @end
 
 @implementation BAJumpingJackTask
 
+//Used to check different points of the JJ to determine if a full one is done
 bool xOkay1;
 bool xOkay2;
 bool yOkay;
@@ -45,9 +50,9 @@ static BAJumpingJackTask *sharedInstance = nil;
     {
         //create an accelerometer manager
         self.motionManager = [[CMMotionManager alloc] init];
-        self.motionManager.accelerometerUpdateInterval = .1;
+        self.motionManager.accelerometerUpdateInterval = .05;
         [self.motionManager startAccelerometerUpdates];
-        self.accelerometerUpdate = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(update:) userInfo:Nil repeats:YES];
+        self.accelerometerUpdate = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(update:) userInfo:Nil repeats:YES];
         self.numberOfJacks = 0;
         self.jacksToComplete = 10;
         xOkay1 = false;
@@ -64,7 +69,7 @@ static BAJumpingJackTask *sharedInstance = nil;
     // get the current accelerometer data
     CMAccelerometerData *accelerometerData = self.motionManager.accelerometerData;
     
-    if(fabs(accelerometerData.acceleration.x) >= .5)
+    if(fabs(accelerometerData.acceleration.x) >= 1)
     {
         xOkay1 = true;
         NSLog(@"X1 Met");
@@ -74,12 +79,12 @@ static BAJumpingJackTask *sharedInstance = nil;
         xOkay2 = true;
         NSLog(@"X2 Met");
     }
-    if (fabs(accelerometerData.acceleration.y) >= 1.00)
+    if (fabs(accelerometerData.acceleration.y) >= 1.90)
     {
         yOkay = true;
         NSLog(@"Y1 Met");
     }
-    if (fabs(accelerometerData.acceleration.z) >= .1)
+    if (fabs(accelerometerData.acceleration.z) >= .5)
     {
         zOkay = true;
         NSLog(@"Z1 Met");
@@ -106,6 +111,7 @@ static BAJumpingJackTask *sharedInstance = nil;
     xOkay2 = false;
     yOkay = false;
     zOkay = false;
+    sharedInstance = nil;
 }
 
 -(bool)JacksCompleted

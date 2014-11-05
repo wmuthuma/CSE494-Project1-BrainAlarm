@@ -14,6 +14,7 @@
 -(NSInteger)JacksDone;
 -(void)terminateJJTask;
 
+//Creates a static instance of the JJ Class
 + (BAJumpingJackTask *)sharedInstance;
 
 @end

@@ -94,6 +94,8 @@
     
     [BATableViewController SaveAlarmList];
     
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

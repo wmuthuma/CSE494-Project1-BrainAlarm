@@ -10,6 +10,12 @@
 		399050FC1A07FEEA0022415C /* Alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 399050FB1A07FEEA0022415C /* Alarm.mp3 */; };
 		3994DE191A099F450084B9E7 /* BAJumpingJackTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994DE181A099F450084B9E7 /* BAJumpingJackTask.m */; };
 		3994DE1B1A09A1A90084B9E7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */; };
+		3994DE1D1A09F8230084B9E7 /* brainalarm app.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE1C1A09F8230084B9E7 /* brainalarm app.png */; };
+		3994DE1F1A09F82D0084B9E7 /* brainalarm iphone3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE1E1A09F82D0084B9E7 /* brainalarm iphone3.png */; };
+		3994DE231A09F83A0084B9E7 /* brainalarm iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE201A09F83A0084B9E7 /* brainalarm iphone4.png */; };
+		3994DE241A09F83A0084B9E7 /* brainalarm settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE211A09F83A0084B9E7 /* brainalarm settings.png */; };
+		3994DE251A09F83A0084B9E7 /* brainalarm spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE221A09F83A0084B9E7 /* brainalarm spotlight.png */; };
+		3994DE271A09F8FF0084B9E7 /* brainalarm app 3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE261A09F8FF0084B9E7 /* brainalarm app 3x.png */; };
 		8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */; };
 		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
 		8CD2B3F21A0AA72500D0287D /* BAMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2B3F11A0AA72500D0287D /* BAMathProblem.m */; };
@@ -46,6 +52,12 @@
 		3994DE171A099F450084B9E7 /* BAJumpingJackTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BAJumpingJackTask.h; path = ../BAJumpingJackTask.h; sourceTree = "<group>"; };
 		3994DE181A099F450084B9E7 /* BAJumpingJackTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BAJumpingJackTask.m; path = ../BAJumpingJackTask.m; sourceTree = "<group>"; };
 		3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3994DE1C1A09F8230084B9E7 /* brainalarm app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm app.png"; sourceTree = "<group>"; };
+		3994DE1E1A09F82D0084B9E7 /* brainalarm iphone3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm iphone3.png"; sourceTree = "<group>"; };
+		3994DE201A09F83A0084B9E7 /* brainalarm iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm iphone4.png"; sourceTree = "<group>"; };
+		3994DE211A09F83A0084B9E7 /* brainalarm settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm settings.png"; sourceTree = "<group>"; };
+		3994DE221A09F83A0084B9E7 /* brainalarm spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm spotlight.png"; sourceTree = "<group>"; };
+		3994DE261A09F8FF0084B9E7 /* brainalarm app 3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm app 3x.png"; sourceTree = "<group>"; };
 		8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlarmModel.h; sourceTree = "<group>"; };
 		8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAlarmModel.m; sourceTree = "<group>"; };
 		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
@@ -159,7 +171,13 @@
 			isa = PBXGroup;
 			children = (
 				8CFF581919F846450087EA6F /* BrainAlarm-Info.plist */,
+				3994DE1C1A09F8230084B9E7 /* brainalarm app.png */,
 				399050FB1A07FEEA0022415C /* Alarm.mp3 */,
+				3994DE261A09F8FF0084B9E7 /* brainalarm app 3x.png */,
+				3994DE201A09F83A0084B9E7 /* brainalarm iphone4.png */,
+				3994DE211A09F83A0084B9E7 /* brainalarm settings.png */,
+				3994DE221A09F83A0084B9E7 /* brainalarm spotlight.png */,
+				3994DE1E1A09F82D0084B9E7 /* brainalarm iphone3.png */,
 				8CFF581A19F846450087EA6F /* InfoPlist.strings */,
 				8CFF581D19F846450087EA6F /* main.m */,
 				8CFF581F19F846450087EA6F /* BrainAlarm-Prefix.pch */,
@@ -267,8 +285,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				399050FC1A07FEEA0022415C /* Alarm.mp3 in Resources */,
+				3994DE231A09F83A0084B9E7 /* brainalarm iphone4.png in Resources */,
 				8CFF582A19F846450087EA6F /* Images.xcassets in Resources */,
+				3994DE271A09F8FF0084B9E7 /* brainalarm app 3x.png in Resources */,
+				3994DE1F1A09F82D0084B9E7 /* brainalarm iphone3.png in Resources */,
+				3994DE241A09F83A0084B9E7 /* brainalarm settings.png in Resources */,
 				8CFF581C19F846450087EA6F /* InfoPlist.strings in Resources */,
+				3994DE1D1A09F8230084B9E7 /* brainalarm app.png in Resources */,
+				3994DE251A09F83A0084B9E7 /* brainalarm spotlight.png in Resources */,
 				8CFF582519F846450087EA6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

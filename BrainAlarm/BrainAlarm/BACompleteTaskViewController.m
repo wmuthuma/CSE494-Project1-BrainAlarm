@@ -45,7 +45,7 @@ NSTimer *infoUpdater;
         self.jacksTask = [BAJumpingJackTask sharedInstance];
         self.taskType = 0;
         self.taskLabel.text = @"10 Jumping Jacks";
-        infoUpdater = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(UpdateInfo:) userInfo:Nil repeats:YES];
+        infoUpdater = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(UpdateInfo:) userInfo:Nil repeats:YES];
         
         self.mathCheckAnswerButton.hidden = YES;
         self.mathCheckAnswerButton.enabled = NO;
@@ -64,6 +64,11 @@ NSTimer *infoUpdater;
     self.taskIsDone = false;
     self.warningLabel.text = @"";
     
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 -(void)UpdateInfo:(NSTimer*)theTimer
