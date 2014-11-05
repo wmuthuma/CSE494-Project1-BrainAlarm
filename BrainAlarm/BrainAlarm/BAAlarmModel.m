@@ -17,6 +17,8 @@
     [aCoder encodeInt:self.type forKey:@"type"];
 }
 
+
+//grab object instance variables
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super init];

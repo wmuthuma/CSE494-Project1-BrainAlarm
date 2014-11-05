@@ -10,8 +10,10 @@
 
 @interface BATableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
+//method to return the static object list of alarms
 +(NSMutableArray *)alarms;
 
+//NSCoding methods to load and save the alarm list
 +(void)LoadAlarmList;
 +(void)SaveAlarmList;
 

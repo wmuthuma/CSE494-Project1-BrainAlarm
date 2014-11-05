@@ -11,15 +11,19 @@
 #import "BATableViewController.h"
 
 @interface BAAddAlarmViewController ()
+
+//properties for UI elements
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 
+//array for choices (source for picker view)
 @property NSArray *taskChoices;
 
 @end
 
 @implementation BAAddAlarmViewController
 
+//picker view methods
 -(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
@@ -49,23 +53,31 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    //initialize the array for picker view choices
     self.taskChoices = [[NSArray alloc] initWithObjects:@"Jumping Jacks", @"Math", nil];
 }
 
+//add a new alarm button
 - (IBAction)addAlarmAction:(id)sender
 {
+    //instantiate a new alarm object
     BAAlarmModel *newAlarm = [[BAAlarmModel alloc]init];
     
+    //set the new alarm time to right now
     newAlarm.alarmTime = self.datePicker.date;
     
+    //set the type to whatever the picker view says
     newAlarm.type = (int) [self.pickerView selectedRowInComponent:0];
     NSLog(@"Add New: %d", newAlarm.type);
     
+    
+    //add the new alarm to the list
     [[BATableViewController alarms] addObject: newAlarm];
     
+    //instantiate the local notification
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
+    //change all of the parameters for the notification
     notification.fireDate = newAlarm.alarmTime;
     notification.repeatInterval = NSCalendarUnitMinute;
     //Need to test
@@ -74,6 +86,7 @@
     notification.userInfo = infoDict;
     NSString *alarmString;
     
+    //depending on which type, change the type of task to be done
     switch(newAlarm.type)
     {
         case Math:
@@ -85,15 +98,20 @@
         default: ;
     }
     
+    
+    //change the alert body of the notification
     notification.alertBody = alarmString;
     
     
+    //subscribe the notification
     [[UIApplication sharedApplication] scheduleLocalNotification: notification];
     
     //[notification release];
     
+    //save the alarm list using nscoding
     [BATableViewController SaveAlarmList];
     
+    //pop back to tableviewcontroller
     [self.navigationController popViewControllerAnimated:YES];
     
 }

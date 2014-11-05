@@ -10,12 +10,14 @@
 
 @interface BAAlarmModel : NSObject
 
+//enum for type of task
 typedef enum
 {
     JJ,
     Math
 } TaskType;
 
+//enum for days of week (unused for now)
 typedef enum
 {
     Sun,
@@ -28,7 +30,10 @@ typedef enum
    
 } Days;
 
+//alarm time object for alarms
 @property NSDate *alarmTime;
+
+//type of task for alarms
 @property TaskType type;
 //@property NSArray *daysActive;
 

@@ -18,10 +18,10 @@
 @implementation BATableViewController
 
 
-
+//static object for the alarm list
 static NSMutableArray *alarmList;
 
-
+//returns the list of alarms
 + (NSMutableArray *)alarms
 {
     if (!alarmList)
@@ -39,16 +39,19 @@ static NSMutableArray *alarmList;
     return self;
 }
 
+//reload the table view
 -(void)viewDidAppear:(BOOL)animated
 {
     [self.tableView reloadData];
     NSLog(@"Reload");
 }
 
+//when the table view first loads
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    //load the alarm list from nscoding
     [BATableViewController LoadAlarmList];
     
     [self.tableView reloadData];
@@ -84,14 +87,9 @@ static NSMutableArray *alarmList;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     
-
     formatter.dateFormat = @"hh:mm a EEE, MMM dd";
     
-   
-    
-    NSString *formattedDate = [formatter stringFromDate:[alarmList[indexPath.row] alarmTime]
-];
-    
+    NSString *formattedDate = [formatter stringFromDate:[alarmList[indexPath.row] alarmTime]];
     
     cell.textLabel.text = formattedDate;
     
@@ -101,13 +99,15 @@ static NSMutableArray *alarmList;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"tableViewSegue"]) {
+    //if the segue is a segue to the view alarm screen
+    if ([segue.identifier isEqualToString:@"tableViewSegue"])
+    {
         UITableViewCell *cell = sender;
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         
         BAViewAlarmViewController *dest = [segue destinationViewController];
-        
+        // send the index of the alarm to the view alarm screen
         dest.alarmIndex = (int) indexPath.row;
         
         NSLog(@"Segue TableView: %d", dest.alarmIndex);
@@ -142,11 +142,13 @@ static NSMutableArray *alarmList;
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSData *data = [[NSData alloc] initWithContentsOfFile:path];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        //load the alarm from the list
         alarmList = [unarchiver decodeObjectForKey:@"AlarmList"];
         [unarchiver finishDecoding];
     }
     else
     {
+        //instantiate a new alarm object
         alarmList = [[NSMutableArray alloc]init];
     }
 }
@@ -156,7 +158,7 @@ static NSMutableArray *alarmList;
     // create a generic data storage object
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    
+    //encode the object (list of alarms)
     [archiver encodeObject: alarmList forKey:@"AlarmList"];
     
     [archiver finishEncoding];
