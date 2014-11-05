@@ -12,6 +12,7 @@
 		3994DE1B1A09A1A90084B9E7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */; };
 		8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */; };
 		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
+		8CD2B3F21A0AA72500D0287D /* BAMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2B3F11A0AA72500D0287D /* BAMathProblem.m */; };
 		8CFF581219F846450087EA6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581119F846450087EA6F /* Foundation.framework */; };
 		8CFF581419F846450087EA6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581319F846450087EA6F /* CoreGraphics.framework */; };
 		8CFF581619F846450087EA6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581519F846450087EA6F /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 		8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAlarmModel.m; sourceTree = "<group>"; };
 		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
 		8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAViewAlarmViewController.m; sourceTree = "<group>"; };
+		8CD2B3F01A0AA72500D0287D /* BAMathProblem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAMathProblem.h; sourceTree = "<group>"; };
+		8CD2B3F11A0AA72500D0287D /* BAMathProblem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAMathProblem.m; sourceTree = "<group>"; };
 		8CFF580E19F846450087EA6F /* BrainAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrainAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CFF581119F846450087EA6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8CFF581319F846450087EA6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -162,6 +165,8 @@
 				8CFF581F19F846450087EA6F /* BrainAlarm-Prefix.pch */,
 				8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */,
 				8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */,
+				8CD2B3F01A0AA72500D0287D /* BAMathProblem.h */,
+				8CD2B3F11A0AA72500D0287D /* BAMathProblem.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */,
 				8CFF585119F84AC60087EA6F /* BACompleteTaskViewController.m in Sources */,
 				8CFF581E19F846450087EA6F /* main.m in Sources */,
+				8CD2B3F21A0AA72500D0287D /* BAMathProblem.m in Sources */,
 				8CFF582219F846450087EA6F /* BAAppDelegate.m in Sources */,
 				3994DE191A099F450084B9E7 /* BAJumpingJackTask.m in Sources */,
 			);
