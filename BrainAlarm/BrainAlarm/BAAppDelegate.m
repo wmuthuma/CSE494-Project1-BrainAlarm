@@ -57,6 +57,8 @@
     [BATableViewController LoadAlarmList];
     //[self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
 
+    self.window.rootViewController = notificationViewController;
+    
     //[self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
     
     

@@ -114,16 +114,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ked-Q0-Gdq">
-                                <rect key="frame" x="195" y="430" width="105" height="30"/>
+                                <rect key="frame" x="199" y="430" width="105" height="30"/>
                                 <state key="normal" title="Back to Alarms">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="backToAlarmsButton:" destination="OdO-dn-jN8" eventType="touchUpInside" id="Ehj-Ru-Pr4"/>
+                                    <segue destination="guW-Pl-GIV" kind="modal" id="uDe-mw-e5s"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vgo-ld-8kz">
-                                <rect key="frame" x="137" y="224" width="47" height="31"/>
+                                <rect key="frame" x="0.0" y="171" width="320" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -139,17 +139,40 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cj8-cM-3My">
+                                <rect key="frame" x="60" y="223" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjM-Wn-Zln">
+                                <rect key="frame" x="165" y="222" width="100" height="30"/>
+                                <state key="normal" title="Check Answer">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="checkAnswer:" destination="OdO-dn-jN8" eventType="touchUpInside" id="9dZ-VQ-2Fa"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pat-sU-sP0">
+                                <rect key="frame" x="74" y="260" width="174" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="Vgo-ld-8kz" id="8hS-Cl-MmF"/>
+                        <outlet property="mathCheckAnswerButton" destination="PjM-Wn-Zln" id="nri-n7-KiG"/>
+                        <outlet property="mathCheckAnswerText" destination="cj8-cM-3My" id="DKh-U7-f6e"/>
                         <outlet property="taskLabel" destination="Iuk-ck-KVL" id="jUh-Yy-r9b"/>
+                        <outlet property="warningLabel" destination="pat-sU-sP0" id="Bvk-z4-y5P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQi-tz-r8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="287" y="778"/>
+            <point key="canvasLocation" x="-37" y="650"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bpq-fM-xaR">
@@ -160,7 +183,6 @@
                     </navigationBar>
                     <connections>
                         <segue destination="Huc-Dm-XJO" kind="relationship" relationship="rootViewController" id="M5I-GZ-DPf"/>
-                        <segue destination="OdO-dn-jN8" kind="modal" identifier="completeTaskSegue" id="WfG-ZS-AbL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2L-8h-qKw" userLabel="First Responder" sceneMemberID="firstResponder"/>

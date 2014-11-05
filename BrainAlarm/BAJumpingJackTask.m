@@ -49,7 +49,7 @@ static BAJumpingJackTask *sharedInstance = nil;
         [self.motionManager startAccelerometerUpdates];
         self.accelerometerUpdate = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(update:) userInfo:Nil repeats:YES];
         self.numberOfJacks = 0;
-        self.jacksToComplete = 5;
+        self.jacksToComplete = 10;
         xOkay1 = false;
         xOkay2 = false;
         yOkay = false;
@@ -64,26 +64,31 @@ static BAJumpingJackTask *sharedInstance = nil;
     // get the current accelerometer data
     CMAccelerometerData *accelerometerData = self.motionManager.accelerometerData;
     
-    if(ABS(accelerometerData.acceleration.x) >= .8)
+    if(fabs(accelerometerData.acceleration.x) >= .5)
     {
         xOkay1 = true;
+        NSLog(@"X1 Met");
     }
-    if(ABS(accelerometerData.acceleration.x) <= .1 && xOkay1)
+    if(fabs(accelerometerData.acceleration.x) <= .1)
     {
         xOkay2 = true;
+        NSLog(@"X2 Met");
     }
-    if (ABS(accelerometerData.acceleration.y) >= 1.5)
+    if (fabs(accelerometerData.acceleration.y) >= 1.00)
     {
         yOkay = true;
+        NSLog(@"Y1 Met");
     }
-    if (ABS(accelerometerData.acceleration.z) >= .5)
+    if (fabs(accelerometerData.acceleration.z) >= .1)
     {
         zOkay = true;
+        NSLog(@"Z1 Met");
     }
     
     if(xOkay1 && xOkay2 && yOkay && zOkay)
     {
         self.numberOfJacks++;
+        NSLog(@"1 Jack completed");
         xOkay1 = false;
         xOkay2 = false;
         yOkay = false;
@@ -95,6 +100,7 @@ static BAJumpingJackTask *sharedInstance = nil;
 -(void)terminateJJTask
 {
     [self.motionManager stopAccelerometerUpdates];
+    [self.accelerometerUpdate invalidate];
     self.numberOfJacks = 0;
     xOkay1 = false;
     xOkay2 = false;
@@ -104,7 +110,7 @@ static BAJumpingJackTask *sharedInstance = nil;
 
 -(bool)JacksCompleted
 {
-    return (int) self.numberOfJacks  == (int) self.jacksToComplete;
+    return (int) self.numberOfJacks  >= (int) self.jacksToComplete;
 }
 
 -(NSInteger)JacksDone

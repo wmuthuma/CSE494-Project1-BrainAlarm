@@ -10,13 +10,18 @@
 #import "BATableViewController.h"
 #import "BAAlarmModel.h"
 #import "BAJumpingJackTask.h"
+#import "BAMathProblem.h"
 
 @interface BACompleteTaskViewController ()
-- (IBAction)backToAlarmsButton:(id)sender;
 @property bool taskIsDone;
 @property (weak, nonatomic) IBOutlet UILabel *taskLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property BAJumpingJackTask *jacksTask;
+@property BAMathProblem *mathTask;
+@property (weak, nonatomic) IBOutlet UITextField *mathCheckAnswerText;
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+@property (weak, nonatomic) IBOutlet UIButton *mathCheckAnswerButton;
+- (IBAction)checkAnswer:(id)sender;
 @end
 
 @implementation BACompleteTaskViewController
@@ -40,9 +45,24 @@ NSTimer *infoUpdater;
         self.jacksTask = [BAJumpingJackTask sharedInstance];
         self.taskType = 0;
         self.taskLabel.text = @"10 Jumping Jacks";
-        infoUpdater = [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(UpdateInfo:) userInfo:Nil repeats:YES];
+        infoUpdater = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(UpdateInfo:) userInfo:Nil repeats:YES];
+        
+        self.mathCheckAnswerButton.hidden = YES;
+        self.mathCheckAnswerButton.enabled = NO;
+        self.mathCheckAnswerText.hidden = YES;
+        self.mathCheckAnswerText.enabled = NO;
+    }
+    else
+    {
+        self.mathTask = [[BAMathProblem alloc] initGenerateProblem];
+        self.taskType = 1;
+        self.taskLabel.text = @"Do the problem!";
+        
+        self.infoLabel.text = [self.mathTask ToString];
+        
     }
     self.taskIsDone = false;
+    self.warningLabel.text = @"";
     
 }
 
@@ -68,11 +88,13 @@ NSTimer *infoUpdater;
 }
 */
 
-//Do later!!
-- (IBAction)backToAlarmsButton:(id)sender
+
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
+    
     NSLog(@"Hi from back to alarm button");
-    if([self.jacksTask JacksCompleted])
+    if([self.jacksTask JacksCompleted] || self.taskIsDone)
     {
         if ([infoUpdater isValid]) {
             [infoUpdater invalidate];
@@ -93,8 +115,6 @@ NSTimer *infoUpdater;
         //Should work need to test
         NSLog(@"Unsubscribe local notification for this alarm");
         
-        [[UIApplication sharedApplication] cancelLocalNotification:self.notification];
-        
         NSArray *notificationList = [[UIApplication sharedApplication] scheduledLocalNotifications];
         
         //In case cleanup is necessary
@@ -107,12 +127,35 @@ NSTimer *infoUpdater;
             }
         }
         
+        [[UIApplication sharedApplication] cancelLocalNotification:self.notification];
+        
         NSLog(@"Save NSCoding");
         
         [BATableViewController SaveAlarmList];
         
-        [self dismissViewControllerAnimated:YES completion:nil];
+        //[self dismissViewControllerAnimated:YES completion:nil];
+        return YES;
     }
-   
+    
+    return NO;
+}
+
+- (IBAction)checkAnswer:(id)sender {
+    
+    int answer = [self.mathCheckAnswerText.text intValue];
+    if([self.mathTask isAnswerCorrect:answer])
+    {
+        self.taskIsDone = YES;
+        self.warningLabel.text = @"Correct!";
+        self.mathCheckAnswerText.enabled = NO;
+        self.mathCheckAnswerText.hidden = YES;
+        self.mathCheckAnswerButton.enabled = NO;
+        self.mathCheckAnswerButton.hidden = YES;
+    }
+    else{
+        self.warningLabel.text = @"Incorrect Answer";
+        self.mathCheckAnswerText.text = @"";
+    }
+    
 }
 @end
