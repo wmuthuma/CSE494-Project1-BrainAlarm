@@ -43,6 +43,7 @@ static BAJumpingJackTask *sharedInstance = nil;
     return sharedInstance;
 }
 
+
 -(id)init
 {
     self = [super init];
@@ -53,6 +54,8 @@ static BAJumpingJackTask *sharedInstance = nil;
         self.motionManager.accelerometerUpdateInterval = .05;
         [self.motionManager startAccelerometerUpdates];
         self.accelerometerUpdate = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(update:) userInfo:Nil repeats:YES];
+        
+        //JJ initialization stuff
         self.numberOfJacks = 0;
         self.jacksToComplete = 10;
         xOkay1 = false;
@@ -64,11 +67,14 @@ static BAJumpingJackTask *sharedInstance = nil;
     return self;
 }
 
+//Timer method
 -(void)update:(NSTimer *)theTimer
 {
     // get the current accelerometer data
     CMAccelerometerData *accelerometerData = self.motionManager.accelerometerData;
     
+    
+    //Check if different parts of the JJ have been done
     if(fabs(accelerometerData.acceleration.x) >= 1)
     {
         xOkay1 = true;
@@ -90,6 +96,7 @@ static BAJumpingJackTask *sharedInstance = nil;
         NSLog(@"Z1 Met");
     }
     
+    //If a full JJ has been done, increment the number done and reset to check for another
     if(xOkay1 && xOkay2 && yOkay && zOkay)
     {
         self.numberOfJacks++;
@@ -102,6 +109,7 @@ static BAJumpingJackTask *sharedInstance = nil;
     
 }
 
+//Stop accelerometer and reset the shared instance for the next alarm
 -(void)terminateJJTask
 {
     [self.motionManager stopAccelerometerUpdates];
@@ -114,11 +122,13 @@ static BAJumpingJackTask *sharedInstance = nil;
     sharedInstance = nil;
 }
 
+//If the user has done the required amount of JJs
 -(bool)JacksCompleted
 {
     return (int) self.numberOfJacks  >= (int) self.jacksToComplete;
 }
 
+//Number of JJs done
 -(NSInteger)JacksDone
 {
     return self.numberOfJacks;

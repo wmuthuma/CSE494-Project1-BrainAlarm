@@ -14,10 +14,13 @@
 
 @interface BACompleteTaskViewController ()
 @property bool taskIsDone;
+//What kind of task
 @property (weak, nonatomic) IBOutlet UILabel *taskLabel;
+//Info pertaining to task
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property BAJumpingJackTask *jacksTask;
 @property BAMathProblem *mathTask;
+//For math task
 @property (weak, nonatomic) IBOutlet UITextField *mathCheckAnswerText;
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @property (weak, nonatomic) IBOutlet UIButton *mathCheckAnswerButton;
@@ -28,30 +31,25 @@
 
 NSTimer *infoUpdater;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //JJ task
     if([self.notification.alertBody containsString:@"Jumping Jacks"])
     {
         self.jacksTask = [BAJumpingJackTask sharedInstance];
         self.taskType = 0;
         self.taskLabel.text = @"10 Jumping Jacks";
+        //Used to repeatedly fetch how many JJs have been done
         infoUpdater = [NSTimer scheduledTimerWithTimeInterval:.05 target:self selector:@selector(UpdateInfo:) userInfo:Nil repeats:YES];
         
+        //Hide stuff related to the math task.
         self.mathCheckAnswerButton.hidden = YES;
         self.mathCheckAnswerButton.enabled = NO;
         self.mathCheckAnswerText.hidden = YES;
         self.mathCheckAnswerText.enabled = NO;
     }
+    //Math task
     else
     {
         self.mathTask = [[BAMathProblem alloc] initGenerateProblem];
@@ -60,53 +58,50 @@ NSTimer *infoUpdater;
         
         self.infoLabel.text = [self.mathTask ToString];
         
+        //No JJ task
+        self.jacksTask = nil;
+        
     }
+    
+    //For math task
     self.taskIsDone = false;
     self.warningLabel.text = @"";
     
 }
 
+//Allow the keyboard to be hidden
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
 }
 
+//Get the number of JJs done
 -(void)UpdateInfo:(NSTimer*)theTimer
 {
     self.infoLabel.text = [NSString stringWithFormat:@"%ld", (long)[self.jacksTask JacksDone] ];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     
     NSLog(@"Hi from back to alarm button");
+    //If the task was completed
     if([self.jacksTask JacksCompleted] || self.taskIsDone)
     {
+        //Stop getting the number of JJs done if that was the task
         if ([infoUpdater isValid]) {
             [infoUpdater invalidate];
         }
-        [self.jacksTask terminateJJTask];
+        
+        //Terminate the JJ task if it was the task
+        if(self.jacksTask != nil)
+        {
+            [self.jacksTask terminateJJTask];
+        }
+        
+        
         NSLog(@"Before deleting from list");
-        //NSLog(@"Alert Body: %@", self.notification.alertBody);
+        //Remove the alarm from the list
         for(BAAlarmModel *a in [BATableViewController alarms])
         {
             if([a.alarmTime isEqual:self.notification.userInfo[@"Name"]])
@@ -116,13 +111,11 @@ NSTimer *infoUpdater;
                 break;
             }
         }
-        
-        //Should work need to test
+
+        //Remove notifications pertaining to the alarm
         NSLog(@"Unsubscribe local notification for this alarm");
         
         NSArray *notificationList = [[UIApplication sharedApplication] scheduledLocalNotifications];
-        
-        //In case cleanup is necessary
         for(UILocalNotification *not in notificationList)
         {
             if([self.notification.userInfo[@"Name"] isEqual:not.fireDate])
@@ -134,6 +127,7 @@ NSTimer *infoUpdater;
         
         [[UIApplication sharedApplication] cancelLocalNotification:self.notification];
         
+        //Save the alarm list
         NSLog(@"Save NSCoding");
         
         [BATableViewController SaveAlarmList];
@@ -145,6 +139,7 @@ NSTimer *infoUpdater;
     return NO;
 }
 
+//Check if the answer to the math problem is correct, if that was the task
 - (IBAction)checkAnswer:(id)sender {
     
     int answer = [self.mathCheckAnswerText.text intValue];

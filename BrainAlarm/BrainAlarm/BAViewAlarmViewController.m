@@ -21,24 +21,18 @@
 
 @implementation BAViewAlarmViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //Get the alarm selected from the table
     self.alarm = [BATableViewController alarms][self.alarmIndex];
+    
+    //Show the user the alarm time
     self.datePicker.date = [self.alarm alarmTime];
     
     NSLog(@"AlarmType: %d", [self.alarm type]);
     
+    //Show the user the task type
     switch([self.alarm type])
     {
         case JJ:
@@ -50,17 +44,10 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
-
+//If the user wants to delete the alarm
 - (IBAction)deleteAlarmButton:(id)sender
 {
+    //Find and remove the alarm from the alarm list
     for(BAAlarmModel *a in [BATableViewController alarms])
     {
         if([self.alarm isEqual:a])
@@ -72,7 +59,7 @@
     
     [BATableViewController SaveAlarmList];
     
-    //should work test later
+    //Remove notifications pertaining to the alarm
     NSArray *notificationList = [[UIApplication sharedApplication] scheduledLocalNotifications];
     
     for(UILocalNotification *not in notificationList)
@@ -83,6 +70,7 @@
         }
     }
     
+    //Go back to the table of alarms
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }

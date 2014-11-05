@@ -14,26 +14,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    //Asks the user to allow notifications
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     }
     
+    //If a notification is fired, show them the task they need to complete
    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
         
         notificationViewController.notification = [locationNotification copy];
-        //notificationViewController.notification.fireDate = notification.fireDate;
+        
         notificationViewController.date = [locationNotification.fireDate copy];
-        
-        
-        // NSLog(@"Alert Body: %@", notificationViewController.notification.alertBody);
-        
+
         [BATableViewController LoadAlarmList];
-        //[self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
-        
+
         [self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
     }
     
@@ -42,24 +39,18 @@
     return YES;
 }
 
+//If a notification is fired, show them the task they need to complete
 -(void)application:(UIApplication*)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
     
    notificationViewController.notification = [notification copy];
-    //notificationViewController.notification.fireDate = notification.fireDate;
     notificationViewController.date = [notification.fireDate copy];
-
-    
-   // NSLog(@"Alert Body: %@", notificationViewController.notification.alertBody);
     
     [BATableViewController LoadAlarmList];
-    //[self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
 
     self.window.rootViewController = notificationViewController;
-    
-    //[self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
     
     
     
