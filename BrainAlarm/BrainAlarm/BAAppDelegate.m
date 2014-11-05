@@ -14,26 +14,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    /*
-     // Handle launching from a notification
-     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-     if (locationNotification) {
-     // Set icon badge number to zero
-     application.applicationIconBadgeNumber = 0;
-     // redirect to UIViewController
-     UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:[NSBundle mainBundle]];
-     UIViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"IdentifierOfViewController"];
-     self.window.rootViewController = notificationViewController; // set the new UIViewController
-     }     */
+    
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
     
    UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         UIStoryboard * storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         BACompleteTaskViewController * notificationViewController = [storyBoard instantiateViewControllerWithIdentifier:@"CompleteTaskViewController"];
-        notificationViewController.notification = locationNotification;
+        
+        notificationViewController.notification = [locationNotification copy];
+        //notificationViewController.notification.fireDate = notification.fireDate;
+        notificationViewController.date = [locationNotification.fireDate copy];
+        
+        
+        // NSLog(@"Alert Body: %@", notificationViewController.notification.alertBody);
+        
         [BATableViewController LoadAlarmList];
-        [self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
+        //[self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
+        
+        [self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
     }
     
     
@@ -56,7 +57,7 @@
     [BATableViewController LoadAlarmList];
     //[self.window.rootViewController performSegueWithIdentifier:@"completeTaskSegue" sender:notificationViewController];
 
-    [self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
+    //[self.window.rootViewController presentViewController:notificationViewController animated:YES completion:nil];
     
     
     

@@ -9,14 +9,19 @@
 #import "BACompleteTaskViewController.h"
 #import "BATableViewController.h"
 #import "BAAlarmModel.h"
+#import "BAJumpingJackTask.h"
 
 @interface BACompleteTaskViewController ()
 - (IBAction)backToAlarmsButton:(id)sender;
 @property bool taskIsDone;
+@property (weak, nonatomic) IBOutlet UILabel *taskLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property BAJumpingJackTask *jacksTask;
 @end
 
 @implementation BACompleteTaskViewController
 
+NSTimer *infoUpdater;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +35,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.taskIsDone = true;
+    if([self.notification.alertBody containsString:@"Jumping Jacks"])
+    {
+        self.jacksTask = [BAJumpingJackTask sharedInstance];
+        self.taskType = 0;
+        self.taskLabel.text = @"10 Jumping Jacks";
+        infoUpdater = [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(UpdateInfo:) userInfo:Nil repeats:YES];
+    }
+    self.taskIsDone = false;
     
+}
+
+-(void)UpdateInfo:(NSTimer*)theTimer
+{
+    self.infoLabel.text = [NSString stringWithFormat:@"%ld", (long)[self.jacksTask JacksDone] ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,10 +71,14 @@
 //Do later!!
 - (IBAction)backToAlarmsButton:(id)sender
 {
-    if(self.taskIsDone)
+    NSLog(@"Hi from back to alarm button");
+    if([self.jacksTask JacksCompleted])
     {
+        if ([infoUpdater isValid]) {
+            [infoUpdater invalidate];
+        }
+        [self.jacksTask terminateJJTask];
         NSLog(@"Before deleting from list");
-        NSLog(@"FireDate: %@", self.date);
         //NSLog(@"Alert Body: %@", self.notification.alertBody);
         for(BAAlarmModel *a in [BATableViewController alarms])
         {
@@ -68,7 +88,6 @@
                 NSLog(@"Found object");
                 break;
             }
-            NSLog(@"Time: %@", [a alarmTime]);
         }
         
         //Should work need to test
@@ -78,10 +97,12 @@
         
         NSArray *notificationList = [[UIApplication sharedApplication] scheduledLocalNotifications];
         
+        //In case cleanup is necessary
         for(UILocalNotification *not in notificationList)
         {
             if([self.notification.userInfo[@"Name"] isEqual:not.fireDate])
             {
+                NSLog(@"Found original notification and deleted it");
                 [[UIApplication sharedApplication] cancelLocalNotification:not];
             }
         }

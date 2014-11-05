@@ -59,7 +59,7 @@
     
     newAlarm.alarmTime = self.datePicker.date;
     
-    newAlarm.type = [self.pickerView selectedRowInComponent:0];
+    newAlarm.type = (int) [self.pickerView selectedRowInComponent:0];
     NSLog(@"Add New: %d", newAlarm.type);
     
     [[BATableViewController alarms] addObject: newAlarm];
@@ -70,7 +70,7 @@
     notification.repeatInterval = NSCalendarUnitMinute;
     //Need to test
     notification.soundName = @"Alarm.mp3";
-    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@", newAlarm.alarmTime] forKey:@"Name"];
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObject:newAlarm.alarmTime forKey:@"Name"];
     notification.userInfo = infoDict;
     NSString *alarmString;
     

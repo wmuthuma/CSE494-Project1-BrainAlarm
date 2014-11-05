@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		399050FC1A07FEEA0022415C /* Alarm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 399050FB1A07FEEA0022415C /* Alarm.mp3 */; };
+		3994DE191A099F450084B9E7 /* BAJumpingJackTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 3994DE181A099F450084B9E7 /* BAJumpingJackTask.m */; };
+		3994DE1B1A09A1A90084B9E7 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */; };
 		8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */; };
 		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
 		8CFF581219F846450087EA6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CFF581119F846450087EA6F /* Foundation.framework */; };
@@ -40,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		399050FB1A07FEEA0022415C /* Alarm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Alarm.mp3; sourceTree = "<group>"; };
+		3994DE171A099F450084B9E7 /* BAJumpingJackTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BAJumpingJackTask.h; path = ../BAJumpingJackTask.h; sourceTree = "<group>"; };
+		3994DE181A099F450084B9E7 /* BAJumpingJackTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BAJumpingJackTask.m; path = ../BAJumpingJackTask.m; sourceTree = "<group>"; };
+		3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlarmModel.h; sourceTree = "<group>"; };
 		8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAlarmModel.m; sourceTree = "<group>"; };
 		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
@@ -74,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3994DE1B1A09A1A90084B9E7 /* CoreMotion.framework in Frameworks */,
 				8CFF581419F846450087EA6F /* CoreGraphics.framework in Frameworks */,
 				8CFF581619F846450087EA6F /* UIKit.framework in Frameworks */,
 				8CFF581219F846450087EA6F /* Foundation.framework in Frameworks */,
@@ -115,6 +121,7 @@
 		8CFF581019F846450087EA6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */,
 				8CFF581119F846450087EA6F /* Foundation.framework */,
 				8CFF581319F846450087EA6F /* CoreGraphics.framework */,
 				8CFF581519F846450087EA6F /* UIKit.framework */,
@@ -126,6 +133,8 @@
 		8CFF581719F846450087EA6F /* BrainAlarm */ = {
 			isa = PBXGroup;
 			children = (
+				3994DE171A099F450084B9E7 /* BAJumpingJackTask.h */,
+				3994DE181A099F450084B9E7 /* BAJumpingJackTask.m */,
 				8CFF582019F846450087EA6F /* BAAppDelegate.h */,
 				8CFF582119F846450087EA6F /* BAAppDelegate.m */,
 				8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */,
@@ -281,6 +290,7 @@
 				8CFF585119F84AC60087EA6F /* BACompleteTaskViewController.m in Sources */,
 				8CFF581E19F846450087EA6F /* main.m in Sources */,
 				8CFF582219F846450087EA6F /* BAAppDelegate.m in Sources */,
+				3994DE191A099F450084B9E7 /* BAJumpingJackTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

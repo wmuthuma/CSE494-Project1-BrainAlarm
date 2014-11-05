@@ -72,7 +72,6 @@ static NSMutableArray *alarmList;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSLog(@"Yo%d", alarmList.count);
     return alarmList.count;
 }
 
@@ -109,7 +108,7 @@ static NSMutableArray *alarmList;
         
         BAViewAlarmViewController *dest = [segue destinationViewController];
         
-        dest.alarmIndex = indexPath.row;
+        dest.alarmIndex = (int) indexPath.row;
         
         NSLog(@"Segue TableView: %d", dest.alarmIndex);
         
