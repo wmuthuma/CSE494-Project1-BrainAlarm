@@ -16,6 +16,8 @@
 		3994DE241A09F83A0084B9E7 /* brainalarm settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE211A09F83A0084B9E7 /* brainalarm settings.png */; };
 		3994DE251A09F83A0084B9E7 /* brainalarm spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE221A09F83A0084B9E7 /* brainalarm spotlight.png */; };
 		3994DE271A09F8FF0084B9E7 /* brainalarm app 3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3994DE261A09F8FF0084B9E7 /* brainalarm app 3x.png */; };
+		3994DE291A09FFA50084B9E7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3994DE281A09FFA50084B9E7 /* AudioToolbox.framework */; };
+		3994DE2B1A09FFB00084B9E7 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3994DE2A1A09FFB00084B9E7 /* AVFoundation.framework */; };
 		8C33C42819F854F1005E0FE9 /* BAAlarmModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */; };
 		8C67D31619F84B6C00133771 /* BAViewAlarmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C67D31519F84B6C00133771 /* BAViewAlarmViewController.m */; };
 		8CD2B3F21A0AA72500D0287D /* BAMathProblem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD2B3F11A0AA72500D0287D /* BAMathProblem.m */; };
@@ -58,6 +60,8 @@
 		3994DE211A09F83A0084B9E7 /* brainalarm settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm settings.png"; sourceTree = "<group>"; };
 		3994DE221A09F83A0084B9E7 /* brainalarm spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm spotlight.png"; sourceTree = "<group>"; };
 		3994DE261A09F8FF0084B9E7 /* brainalarm app 3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brainalarm app 3x.png"; sourceTree = "<group>"; };
+		3994DE281A09FFA50084B9E7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3994DE2A1A09FFB00084B9E7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8C33C42619F854F1005E0FE9 /* BAAlarmModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAAlarmModel.h; sourceTree = "<group>"; };
 		8C33C42719F854F1005E0FE9 /* BAAlarmModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAAlarmModel.m; sourceTree = "<group>"; };
 		8C67D31419F84B6C00133771 /* BAViewAlarmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAViewAlarmViewController.h; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3994DE2B1A09FFB00084B9E7 /* AVFoundation.framework in Frameworks */,
+				3994DE291A09FFA50084B9E7 /* AudioToolbox.framework in Frameworks */,
 				3994DE1B1A09A1A90084B9E7 /* CoreMotion.framework in Frameworks */,
 				8CFF581419F846450087EA6F /* CoreGraphics.framework in Frameworks */,
 				8CFF581619F846450087EA6F /* UIKit.framework in Frameworks */,
@@ -136,6 +142,8 @@
 		8CFF581019F846450087EA6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3994DE2A1A09FFB00084B9E7 /* AVFoundation.framework */,
+				3994DE281A09FFA50084B9E7 /* AudioToolbox.framework */,
 				3994DE1A1A09A1A90084B9E7 /* CoreMotion.framework */,
 				8CFF581119F846450087EA6F /* Foundation.framework */,
 				8CFF581319F846450087EA6F /* CoreGraphics.framework */,

@@ -11,6 +11,8 @@
 #import "BAAlarmModel.h"
 #import "BAJumpingJackTask.h"
 #import "BAMathProblem.h"
+@import AudioToolbox;
+@import AVFoundation;
 
 @interface BACompleteTaskViewController ()
 @property bool taskIsDone;
@@ -25,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @property (weak, nonatomic) IBOutlet UIButton *mathCheckAnswerButton;
 - (IBAction)checkAnswer:(id)sender;
+
+@property (strong, nonatomic) AVAudioPlayer *click;
 @end
 
 @implementation BACompleteTaskViewController
@@ -34,6 +38,27 @@ NSTimer *infoUpdater;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Continue alarm sound
+    // Construct URL to sound file
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Alarm" ofType:@"mp3"];
+    NSURL *soundUrl = [NSURL fileURLWithPath:path];
+    
+    // Create audio player object and initialize with URL to sound
+    NSError *error;
+    self.click = [[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:&error];
+    if(error)
+    {
+        NSLog(@"%@", error);
+    }
+    else
+    {
+        self.click.numberOfLoops = 3;
+        self.click.volume = 1.0;
+        [self.click play];
+    }
+    
     //JJ task
     if([self.notification.alertBody containsString:@"Jumping Jacks"])
     {
@@ -88,6 +113,8 @@ NSTimer *infoUpdater;
     //If the task was completed
     if([self.jacksTask JacksCompleted] || self.taskIsDone)
     {
+        //Stop alarm
+        [self.click stop];
         //Stop getting the number of JJs done if that was the task
         if ([infoUpdater isValid]) {
             [infoUpdater invalidate];
