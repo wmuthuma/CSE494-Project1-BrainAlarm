@@ -8,7 +8,19 @@
 
 #import "BAAlarmModel.h"
 
+
 @implementation BAAlarmModel
+
+@synthesize alarmTime;
+@synthesize type;
+
++ (NSString *)parseClassName {
+	return @"BAAlarmModel";
+}
+
++ (PFQuery *)query {
+	return [PFQuery queryWithClassName:[self parseClassName]];
+}
 
 //encoder methods for NSCoding
 -(void)encodeWithCoder:(NSCoder *)aCoder

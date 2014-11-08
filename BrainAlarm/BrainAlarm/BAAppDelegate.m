@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 ___CSE494___. All rights reserved.
 //
 
+#import <Parse/Parse.h>
+
+#import "BAAlarmModel.h"
 #import "BAAppDelegate.h"
 #import "BACompleteTaskViewController.h"
 #import "BATableViewController.h"
@@ -14,6 +17,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[Parse setApplicationId:@"fmXRs0nWQKwnN5RSLOk9KJAOVmzzw0eLiiwylAXq"
+				  clientKey:@"TiqbUTdJGI5gM3ULHrJk8IlKaTvjWJdaZAtj2E3i"];
+	
+	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+	
+	[BAAlarmModel registerSubclass];
+	
     //Asks the user to allow notifications
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
