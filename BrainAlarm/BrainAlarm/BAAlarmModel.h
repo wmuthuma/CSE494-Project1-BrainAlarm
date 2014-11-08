@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
-@interface BAAlarmModel : NSObject
+@interface BAAlarmModel : PFObject<PFSubclassing>
 
 //enum for type of task
 typedef enum

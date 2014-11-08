@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 ___CSE494___. All rights reserved.
 //
 
+#import <Parse/Parse.h>
+
 #import "BATableViewController.h"
 #import "BAViewAlarmViewController.h"
 #import "BAAlarmModel.h"
@@ -81,6 +83,7 @@ static NSMutableArray *alarmList;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AlarmCell" forIndexPath:indexPath];
     
     // Configure the cell...
@@ -88,12 +91,13 @@ static NSMutableArray *alarmList;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     
     formatter.dateFormat = @"hh:mm a EEE, MMM dd";
-    
-    NSString *formattedDate = [formatter stringFromDate:[alarmList[indexPath.row] alarmTime]];
-    
-    cell.textLabel.text = formattedDate;
-    
-    
+	
+	if ([alarmList[indexPath.row] alarmTime] == nil) {
+		[alarmList removeObjectAtIndex:indexPath.row];
+	} else {
+		NSString *formattedDate = [formatter stringFromDate:[alarmList[indexPath.row] alarmTime]];
+		cell.textLabel.text = formattedDate;
+	}
     return cell;
 }
 
@@ -134,23 +138,36 @@ static NSMutableArray *alarmList;
     
 }
 
+static NSString *alarmArray_ID;
+#define alarmArray_key @"alarmArray_key"
+
 +(void)LoadAlarmList
 {
-    NSString *path = [self dataFilePath];
-    
-    //do we have anything in our documents directory?  If we have anything then load it up
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        //load the alarm from the list
-        alarmList = [unarchiver decodeObjectForKey:@"AlarmList"];
-        [unarchiver finishDecoding];
-    }
-    else
-    {
-        //instantiate a new alarm object
-        alarmList = [[NSMutableArray alloc]init];
-    }
+	NSString *objId = [[NSUserDefaults standardUserDefaults] objectForKey:@"object_id"];
+	if (objId) {
+		PFQuery *query = [BAAlarmModel query];
+		[query getObjectInBackgroundWithId:objId block:^(PFObject *object, NSError *error) {
+			if (!error) {
+				alarmList = [object objectForKey:alarmArray_key];
+			}
+		}];
+	} else {
+		NSString *path = [self dataFilePath];
+		
+		//do we have anything in our documents directory?  If we have anything then load it up
+		if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+			NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+			NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+			//load the alarm from the list
+			alarmList = [unarchiver decodeObjectForKey:@"AlarmList"];
+			[unarchiver finishDecoding];
+		}
+		else
+		{
+			//instantiate a new alarm object
+			alarmList = [[NSMutableArray alloc]init];
+		}
+	}
 }
 
 +(void)SaveAlarmList
@@ -163,7 +180,17 @@ static NSMutableArray *alarmList;
     
     [archiver finishEncoding];
     [data writeToFile:[self dataFilePath] atomically:YES];
+	
+	PFObject *testObject = [PFObject objectWithClassName:[BAAlarmModel parseClassName]];
+	testObject[alarmArray_key] = alarmList;
+	[testObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+		if (!error) {
+			alarmArray_ID = [testObject objectId];
+			[[NSUserDefaults standardUserDefaults] setObject:alarmArray_ID forKey:@"object_id"];
+		}
+	}];
 }
+
 
 
 
