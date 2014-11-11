@@ -11,9 +11,11 @@
 #import "BAAlarmModel.h"
 
 @interface BAViewAlarmViewController ()
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
 @property (weak, nonatomic) IBOutlet UILabel *taskLabel;
 - (IBAction)deleteAlarmButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *countDownLabel;
+@property (weak, nonatomic) IBOutlet UILabel *alarmEndLabel;
 
 @property BAAlarmModel *alarm;
 
@@ -28,8 +30,36 @@
     self.alarm = [BATableViewController alarms][self.alarmIndex];
     
     //Show the user the alarm time
-    self.datePicker.date = [self.alarm alarmTime];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormat setTimeStyle:NSDateFormatterMediumStyle];
+    NSString *formattedAlarm = [dateFormat stringFromDate:self.alarm.alarmTime];
+    self.alarmEndLabel.text = formattedAlarm;
     
+    
+    // Real time countdown until alarm
+    NSDate *alarmDate = [self.alarm alarmTime];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        while (true) {
+            NSDate *now = [[NSDate alloc] init];
+            NSTimeInterval diff = [alarmDate timeIntervalSinceDate:now];
+            
+            div_t hours_div = div(diff, 3600);
+            int hours = hours_div.quot;
+            
+            div_t mins_div = div(hours_div.rem, 60);
+            int mins = mins_div.quot;
+            int secs = mins_div.rem;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.countDownLabel.text = [NSString stringWithFormat:@"%02d:%02d:%02d", hours, mins, secs];
+            });
+            
+            NSLog(@"%f", diff);
+        }
+    });
+
+    //self.countDownLabel.text = formattedDate;
     NSLog(@"AlarmType: %d", [self.alarm type]);
     
     //Show the user the task type
