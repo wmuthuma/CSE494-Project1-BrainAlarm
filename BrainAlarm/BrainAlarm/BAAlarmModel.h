@@ -15,7 +15,8 @@
 typedef enum
 {
     JJ,
-    Math
+    Math,
+    Kill
 } TaskType;
 
 //enum for days of week (unused for now)

@@ -73,24 +73,85 @@ NSTimer *infoUpdater;
         self.mathCheckAnswerButton.enabled = NO;
         self.mathCheckAnswerText.hidden = YES;
         self.mathCheckAnswerText.enabled = NO;
+        
+        return;
     }
+    
+    
     //Math task
-    else
+    else if([self.notification.alertBody containsString:@"Deactivated"])
     {
         self.mathTask = [[BAMathProblem alloc] initGenerateProblem];
-        self.taskType = 1;
+        self.taskType = 2;
         self.taskLabel.text = @"Do the problem!";
         
         self.infoLabel.text = [self.mathTask ToString];
         
         //No JJ task
         self.jacksTask = nil;
+        return;
         
     }
     
-    //For math task
-    self.taskIsDone = false;
-    self.warningLabel.text = @"";
+    
+    //Kill Me Task
+    else if([self.notification.alertBody containsString:@"Tap me 10 times to stop"])
+    {
+        self.taskLabel.text = @"Swipe Me  10 times Please :)";
+        self.taskType = 1;
+        
+        
+        UIImageView *dot =[[UIImageView alloc] initWithFrame:CGRectMake(0,150,100,100)];
+        dot.image=[UIImage imageNamed:@"porkypig.jpg"];
+        [self.view addSubview:dot];
+        
+        [dot setUserInteractionEnabled:YES];
+        
+        UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        
+        // Setting the swipe direction.
+        [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+        
+        // Adding the swipe gesture on image view
+        [dot addGestureRecognizer:swipeRight];
+        
+
+        
+        
+        
+        //Hide stuff related to the math task.
+        self.mathCheckAnswerButton.hidden = YES;
+        self.mathCheckAnswerButton.enabled = NO;
+        self.mathCheckAnswerText.hidden = YES;
+        self.mathCheckAnswerText.enabled = NO;
+        
+        //No JJ task
+        self.jacksTask = nil;
+        self.taskIsDone = YES;
+        
+        
+        
+        return;
+    }
+    
+    
+    
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
+    
+
+    
+    if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        self.taskIsDone = YES;
+        
+        self.taskLabel.text = @"Task Completed";
+        self.jacksTask = nil;
+        
+        [self.click stop];
+       
+        
+    }
     
 }
 

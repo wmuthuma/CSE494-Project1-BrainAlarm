@@ -71,6 +71,9 @@
         case Math:
             self.taskLabel.text = @"Math";
             break;
+        case Kill:
+            self.taskLabel.text = @"Kill";
+            break;
     }
 }
 
